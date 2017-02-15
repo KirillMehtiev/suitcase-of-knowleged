@@ -1,3 +1,4 @@
+using System.Threading;
 using Xunit;
 
 namespace SinglyLinkedList
@@ -10,6 +11,7 @@ namespace SinglyLinkedList
         {
             _linkedList = new LinkedList<int>();
         }
+
         [Fact]
         public void Prepend()
         {
@@ -92,7 +94,7 @@ namespace SinglyLinkedList
         public void InsertToEmptyList()
         {
             // arrange
-
+            
             // act
             _linkedList.InsertAt(0, 0);
 
@@ -102,21 +104,21 @@ namespace SinglyLinkedList
             Assert.Equal(0, _linkedList.Last);
         }
 
-        [Fact]
+        [Fact(Skip = "Method has not been implemented yet.")]
         public void RemoveAt()
         {
-            //// arrange
-            //var linkedList = new LinkedList<int>();
-            //linkedList.Append(1);
-            //linkedList.Append(2);
+            // arrange
+            var linkedList = new LinkedList<int>();
+            linkedList.Append(1);
+            linkedList.Append(2);
 
-            //// act
-            //linkedList.RemoveAt(1);
+            // act
+            linkedList.RemoveAt(1);
 
 
-            //// asset
-            //Assert.Equal(0, linkedList.First);
-            //Assert.Equal(0, linkedList.Last);
+            // asset
+            Assert.Equal(0, linkedList.First);
+            Assert.Equal(0, linkedList.Last);
         }
     }
 }
