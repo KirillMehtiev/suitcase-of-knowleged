@@ -17,14 +17,6 @@ namespace Methods
             _y = y;
         }
 
-        /// <summary>
-        /// Operator overload for Add operation.
-        /// Possible Exeptions: 
-        ///     StackOverflowException
-        /// </summary>
-        /// <param name="p1">First point to add</param>
-        /// <param name="p2">Second point to add</param>
-        /// <returns>Result of adding the two points</returns>
         public static Point operator +(Point p1, Point p2)
         {
             int x, y;
@@ -38,14 +30,6 @@ namespace Methods
             return new Point(x, y);
         }
 
-        /// <summary>
-        /// Operator overload for Subtract operation.
-        /// Possible Exeptions: 
-        ///     StackOverflowException
-        /// </summary>
-        /// <param name="p1">First point to add</param>
-        /// <param name="p2">Second point to add</param>
-        /// <returns>Result of subtracting the two points</returns>
         public static Point operator -(Point p1, Point p2)
         {
             int x, y;
