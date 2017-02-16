@@ -10,24 +10,6 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
-            //var node5 = new TreeNode<int>(5);
-            //var node3 = new TreeNode<int>(3);
-            //var node7 = new TreeNode<int>(7);
-            //var node4 = new TreeNode<int>(4);
-            //var node6 = new TreeNode<int>(6);
-            //var node9 = new TreeNode<int>(9);
-            //var node8 = new TreeNode<int>(9);
-
-            //node5.LeftNode = node3;
-            //node5.RightNode = node7;
-
-            //node3.RightNode = node4;
-
-            //node7.LeftNode = node6;
-            //node7.RightNode = node9;
-
-            //node6.RightNode = node8;
-
             var tree = new BinaryTree<int>();
 
             var root  = tree.InsertNode(null, 5);
