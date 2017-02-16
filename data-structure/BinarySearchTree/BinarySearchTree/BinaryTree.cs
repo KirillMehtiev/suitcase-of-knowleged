@@ -10,13 +10,13 @@ namespace BinarySearchTree
             {
                 parent = new TreeNode<T>(childValue);
             }
-            else if (parent.Value.CompareTo(childValue) < 0)
+            else if (childValue.CompareTo(parent.Value) < 0)
             {
-                parent.LeftNode = new TreeNode<T>(childValue);
+                parent.LeftNode = InsertNode(parent.LeftNode, childValue);
             }
             else
             {
-                parent.RightNode = new TreeNode<T>(childValue);
+                parent.RightNode = InsertNode(parent.RightNode, childValue);
             }
 
             return parent;
@@ -26,24 +26,27 @@ namespace BinarySearchTree
         {
             if(root == null)  return;
 
+            Console.WriteLine(root.Value);
+
             Traverse(root.LeftNode);
             Traverse(root.RightNode);
         }
 
         public bool Contains(TreeNode<T> root, T nodeValue)
         {
-            bool result = root.Value.Equals(nodeValue);
-
-            if (root.LeftNode != null)
+            if (root != null)
             {
-                result = Contains(root.LeftNode, nodeValue);
-            }
-            else if (root.RightNode != null)
-            {
-                result = Contains(root.RightNode, nodeValue);
+                if (root.Value.Equals(nodeValue)) return true;
+
+                if (root.LeftNode != null)
+                    Contains(root.LeftNode, nodeValue);
+
+                if (root.RightNode != null)
+                    Contains(root.RightNode, nodeValue);
             }
 
-            return result;
+            return false;
+
         }
     }
 }
