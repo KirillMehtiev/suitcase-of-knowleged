@@ -45,8 +45,10 @@
     <Compile Include="ConversionOperators.cs" />
     <Compile Include="Ctors.cs" />
     <Compile Include="OperatorOverload.cs" />
+    <Compile Include="PartialMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtentionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

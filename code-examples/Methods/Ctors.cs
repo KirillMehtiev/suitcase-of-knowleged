@@ -13,7 +13,7 @@ namespace Methods
     // Default constructor will be created by compiler
     class EqualMyClass
     {
-        public EqualMyClass() : base() { this.e }
+        public EqualMyClass() : base() {  }
     }
 
     // Compiler will not create a default constructor
