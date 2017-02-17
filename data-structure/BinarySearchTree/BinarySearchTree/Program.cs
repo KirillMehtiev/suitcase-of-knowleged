@@ -10,7 +10,7 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
-            var tree = new BinaryTree<int>();
+            var tree = new BinarySearchTree<int>();
 
             var root  = tree.InsertNode(null, 5);
             tree.InsertNode(root, 3);
@@ -20,9 +20,10 @@ namespace BinarySearchTree
             tree.InsertNode(root.RightNode, 9);
             tree.InsertNode(root.RightNode.LeftNode, 8);
 
-            //var isContans8 = tree.Contains(root, 9);
-            //Console.WriteLine(isContans8);
-            tree.Traverse(root);
+            var result = tree.Traverse(root, TraverseOrder.Inorder);
+
+            foreach (var item in result)
+                Console.Write(item);
 
             Console.ReadKey();
         }
