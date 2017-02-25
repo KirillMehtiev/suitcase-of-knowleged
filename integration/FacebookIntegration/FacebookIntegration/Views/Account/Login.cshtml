@@ -1,0 +1,17 @@
+﻿@using FacebookIntegration.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log int page";
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
