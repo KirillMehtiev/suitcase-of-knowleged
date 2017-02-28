@@ -15,62 +15,43 @@ namespace SinglyLinkedList
         [Fact]
         public void Prepend()
         {
-            // arrange
-
-            // act
             _linkedList.Prepend(1);
             _linkedList.Prepend(2);
             _linkedList.Prepend(3);
 
-            // asset
             Assert.Equal(3, _linkedList.Count);
-            Assert.Equal(3, _linkedList.First);
-            Assert.Equal(1, _linkedList.Last);
+            Assert.Equal(3, _linkedList.Head.Data);
         }
 
         [Fact]
         public void Append()
         {
-            // arrange
-            
-
-            // act
             _linkedList.Append(1);
             _linkedList.Append(2);
 
-            // asset
             Assert.Equal(2, _linkedList.Count);
-            Assert.Equal(1, _linkedList.First);
-            Assert.Equal(2, _linkedList.Last);
+            Assert.Equal(2, _linkedList.Head.Next.Data);
         }
 
         [Fact]
         public void InsertAtTheBeginnig()
         {
-            // arrange
             _linkedList.Append(1);
             _linkedList.Append(2);
-
-            // act
             _linkedList.InsertAt(0, 0);
 
-            // asset
             Assert.Equal(3, _linkedList.Count);
-            Assert.Equal(0, _linkedList.First);
+            Assert.Equal(0, _linkedList.Head.Data);
         }
 
         [Fact]
         public void InsertAtTheMiddle()
         {
-            // arrange
             _linkedList.Append(0);
             _linkedList.Append(2);
             _linkedList.Append(3);
-
-            // act
             _linkedList.InsertAt(1, 1);
 
-            // asset
             Assert.Equal(4, _linkedList.Count);
             Assert.Equal(1, _linkedList.Head.Next.Data);
         }
@@ -78,30 +59,20 @@ namespace SinglyLinkedList
         [Fact]
         public void InsertAtTheEnd()
         {
-            // arrange
             _linkedList.Append(0);
-            _linkedList.Append(2);
+            _linkedList.InsertAt(_linkedList.Count, 1);
 
-            // act
-            _linkedList.InsertAt(1, 1);
-
-            // asset
-            Assert.Equal(3, _linkedList.Count);
+            Assert.Equal(2, _linkedList.Count);
             Assert.Equal(1, _linkedList.Head.Next.Data);
         }
 
         [Fact]
         public void InsertToEmptyList()
         {
-            // arrange
-            
-            // act
             _linkedList.InsertAt(0, 0);
 
-            // asset
             Assert.Equal(1, _linkedList.Count);
-            Assert.Equal(0, _linkedList.First);
-            Assert.Equal(0, _linkedList.Last);
+            Assert.Equal(0, _linkedList.Head.Data);
         }
 
         [Fact(Skip = "Method has not been implemented yet.")]
@@ -117,8 +88,7 @@ namespace SinglyLinkedList
 
 
             // asset
-            Assert.Equal(0, linkedList.First);
-            Assert.Equal(0, linkedList.Last);
+            Assert.Equal(0, linkedList.Head.Data);
         }
     }
 }

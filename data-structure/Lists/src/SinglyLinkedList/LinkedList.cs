@@ -7,29 +7,38 @@ namespace SinglyLinkedList
 {
     class LinkedList<T> : IEnumerable<T>
     {
-        private int _count;
+        private int _count = 0;
         private LinkedListNode<T> _firstNode;
         private LinkedListNode<T> _lastNode;
 
-        public int Count
-        {
-            get { return _count; }
-        }
-
-        public LinkedListNode<T> Head => _firstNode;
-
-        public T First
-        {
-            get { return _firstNode == null ? default(T) : _firstNode.Data; }
-        }
-
-        public T Last
-        {
-            //TODO: Added some logic to update last after insert and delete operation
-            get { return _lastNode == null ? default(T) : _lastNode.Data; }
-        }
-
+        public int Count => _count;
+        public LinkedListNode<T> Head => First;
         public bool IsEmpty => _count == 0;
+
+        private LinkedListNode<T> First
+        {
+            get { return _firstNode; }
+            set { _firstNode = value; }
+        }
+
+        private LinkedListNode<T> Last
+        {
+            get
+            {
+                var last = First;
+
+                if (last != null)
+                {
+                    while (last.Next != null)
+                    {
+                        last = last.Next;
+                    }
+                }
+
+                return last;
+            }
+            set { _lastNode = value; }
+        }
 
         /// <summary>
         /// Inserts the specified data at the beginning of the list.
@@ -43,12 +52,12 @@ namespace SinglyLinkedList
 
             if (IsEmpty)
             {
-                _firstNode = item;
-                _lastNode = item;
+                First = item;
             }
             else if (_count > 0)
             {
-                _firstNode = item;
+                item.Next = First;
+                First = item;
             }
             else
             {
@@ -70,13 +79,14 @@ namespace SinglyLinkedList
 
             if (IsEmpty)
             {
-                _firstNode = item;
-                _lastNode = item;
+                First = item;
             }
             else if (_count > 0)
             {
-                _lastNode.Next = item;
-                _lastNode = item;
+                var last = Last;
+
+                last.Next = item;
+                Last = item;
             }
             else
             {
@@ -91,58 +101,41 @@ namespace SinglyLinkedList
         /// Inserts the specified data based on index at the list.
         /// </summary>
         /// <param name="data">The data value to be inserted to the list.</param>
-        /// <param name="index">Zero base index for data value to be inserted to the list.</param>
+        /// <param name="index">Index for data value to be inserted to the list.</param>
         public void InsertAt(T data, int index)
         {
             if (data == null) throw new ArgumentNullException();
-            if (index < 0 && index < _count) throw new ArgumentOutOfRangeException("Index out of range!");
+            if (index < 0 || index > Count) throw new ArgumentOutOfRangeException("Index out of range!");
 
-            var itemToBeInserted = new LinkedListNode<T>(data);
-
-            //TODO: Split for three part prepend, append (use corresponding method) and insert in the range
-
-            if (IsEmpty)
+            if (index == 0)
             {
-                _firstNode = itemToBeInserted;
-                _lastNode = itemToBeInserted;
+                Prepend(data);
             }
-            else if (_count > 0)
+            else if (index == Count)
             {
-                if (index == 0)
-                {
-                    itemToBeInserted.Next = _firstNode;
-                    _firstNode = itemToBeInserted;
-                }
-                else
-                {
-                    var counter = 0;
-                    var current = _firstNode;
-
-                    while (counter < index)
-                    {
-                        if ((counter + 1) == index)
-                        {
-                            var next = current.Next;
-                            current.Next = itemToBeInserted;
-                            itemToBeInserted.Next = next;
-                        }
-                        counter++;
-                    }
-
-                    // insert at the end - update Last
-                    if (_count - 1 == index)
-                    {
-                        _lastNode = itemToBeInserted;
-                    }
-                }
-
+                Append(data);
             }
             else
             {
-                throw new Exception($"Can not insert item. Count = {_count} IndexToInsert = {index}");
-            }
+                var itemToBeInserted = new LinkedListNode<T>(data);
+                var counter = 0;
 
-            IncreaseCount(1);
+                var current = First;
+
+                while (counter < index)
+                {
+                    if ((counter + 1) == index)
+                    {
+                        itemToBeInserted.Next = current.Next;
+                        current.Next = itemToBeInserted;
+                        break;
+                    }
+
+                    counter++;
+                }
+
+                IncreaseCount(1);
+            }
         }
 
         /// <summary>
@@ -151,23 +144,7 @@ namespace SinglyLinkedList
         /// <param name="index"></param>
         public void RemoveAt(int index)
         {
-            if (IsEmpty) throw new Exception("The list is empty!");
-            if (index < 0 && index < _count) throw new ArgumentOutOfRangeException("Index out of range!");
-
-            var counter = 0;
-            var current = _firstNode;
-
-            while (counter < index)
-            {
-                if ((counter + 1) == index)
-                {
-                    var itemToBeDeleted = current.Next;
-                    current.Next = itemToBeDeleted.Next;
-                    itemToBeDeleted.Dispose();
-                    DecreaseCount(1);
-                }
-                counter++;
-            }
+            throw new NotImplementedException();
         }
 
         public void Clear()
@@ -228,7 +205,7 @@ namespace SinglyLinkedList
         {
             _count += increaseNumber;
         }
-
+        
         private void DecreaseCount(int decreaseNumber)
         {
             _count += decreaseNumber;
