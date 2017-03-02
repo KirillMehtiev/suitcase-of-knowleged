@@ -58,14 +58,10 @@ namespace FacebookIntegration
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "969808836486096",
-            //   appSecret: "0b13154bdf4a3cc0878c7ff479869181");
-
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions
             {
-                AppId = "969808836486096",
-                AppSecret = "0b13154bdf4a3cc0878c7ff479869181",
+                AppId = "YOUR_APPID",
+                AppSecret = "YOUR_APPSECRET",
                 Provider = new FacebookAuthProvider()
             });
 
